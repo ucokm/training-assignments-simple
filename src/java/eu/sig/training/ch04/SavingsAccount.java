@@ -1,9 +1,8 @@
 package eu.sig.training.ch04;
 
 // tag::SavingsAccount[]
-public class SavingsAccount {
+public class SavingsAccount extends AccountInterest{
     private static final float INTEREST_PERCENTAGE = 0.04f;
-    private Money balance = new Money();
     private CheckingAccount registeredCounterAccount;
 
     public Transfer makeTransfer(String counterAccount, Money amount) 
@@ -31,13 +30,8 @@ public class SavingsAccount {
         }
     }
 
-    public void addInterest() {
-        Money interest = balance.multiply(INTEREST_PERCENTAGE);
-        if (interest.greaterThan(0)) {
-            balance.add(interest);
-        } else {
-            balance.substract(interest);
-        }
-    }
+	public void setInterest(float val) {
+		setInterestPercentage(INTEREST_PERCENTAGE);
+	}
 }
 // end::SavingsAccount[]
