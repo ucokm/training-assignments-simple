@@ -2,15 +2,10 @@ package eu.sig.training.ch04;
 
 public abstract class AccountInterest {
     private Money balance = new Money();
-    private float interestPercentage;
 	
 	public abstract Transfer makeTransfer(String counterAccount, Money amount) throws BusinessException;
 	
-	public void setInterestPercentage(float val) {
-		interestPercentage = val;
-	}
-	
-	public void addInterest() {
+	private void addInterest(float interestPercentage) {
         Money interest = balance.multiply(interestPercentage);
         if (interest.greaterThan(0)) {
             balance.add(interest);
@@ -18,4 +13,14 @@ public abstract class AccountInterest {
             balance.substract(interest);
         }
     }
+	
+	protected int calculateAccountNumber(String counterAccount) {
+		int sum = 0;
+        for (int i = 0; i < counterAccount.length(); i++) {
+            char character = counterAccount.charAt(i);
+            int characterValue = Character.getNumericValue(character);
+            sum = sum + (9 - i) * characterValue;
+        }
+		return sum;
+	}
 }
