@@ -3,7 +3,7 @@ package eu.sig.training.ch04;
 public abstract class AccountInterest {
     private Money balance = new Money();
 	
-	public abstract Transfer makeTransfer(String counterAccount, Money amount) throws BusinessException;
+	protected abstract Transfer makeTransfer(String counterAccount, Money amount) throws BusinessException;
 	
 	private void addInterest(float interestPercentage) {
         Money interest = balance.multiply(interestPercentage);
